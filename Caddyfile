@@ -1,0 +1,26 @@
+{
+    admin off
+    order forward_proxy before file_server
+
+    log {
+        output stdout
+        format console
+        level INFO
+    }
+}
+
+:443, {$DOMAIN} {
+    tls /etc/letsencrypt/live/{$CERT_NAME}/fullchain.pem /etc/letsencrypt/live/{$CERT_NAME}/privkey.pem
+
+    encode zstd gzip
+
+    forward_proxy {
+        basic_auth {$PROXY_USER} {$PROXY_PASSWORD}
+        hide_ip
+        hide_via
+        probe_resistance
+    }
+
+    root * /srv/site
+    file_server
+}
