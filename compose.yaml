@@ -10,6 +10,7 @@ services:
       - .env
     ports:
       - "443:443/tcp"
+      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - ./site:/srv/site:ro
