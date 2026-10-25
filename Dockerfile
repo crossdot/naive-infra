@@ -1,7 +1,7 @@
 ARG CADDY_VERSION=2.11.7
-ARG FORWARDPROXY_VERSION=v2.11.7-naive2
 
 FROM caddy:${CADDY_VERSION}-alpine
+ARG FORWARDPROXY_VERSION=v2.11.7-naive2
 RUN set -eux; \
     apk add --no-cache curl tar xz; \
     curl -fsSL \
