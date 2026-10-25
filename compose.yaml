@@ -2,9 +2,7 @@ services:
   caddy:
     build:
       context: .
-      args:
-        CADDY_VERSION: ${CADDY_VERSION:-2.10.2}
-    image: local/naive-forwardproxy-caddy:${CADDY_VERSION:-2.10.2}
+    image: local/naive-forwardproxy-caddy:dev
     container_name: naive-caddy
     restart: unless-stopped
     env_file:
